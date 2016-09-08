@@ -119,25 +119,3 @@ function weixin_robot_init($wp){
 	}
 }
 
-/*
-Plugin Name: 在后台显示日志 ID
-Plugin URI: http://blog.wpjam.com/m/how-to-display-post-id-in-the-wordpress-admin/
-Description: WordPress 技巧：如何在后台显示日志 ID
-Version: 0.1
-Author: Denis
-Author URI: http://blog.wpjam.com/
-*/
-add_filter('manage_posts_columns', 'wpjam_id_manage_posts_columns');
-add_filter('manage_pages_columns', 'wpjam_id_manage_posts_columns');
-function wpjam_id_manage_posts_columns($columns){
-    $columns['post_id'] = 'ID';
-    return $columns;
-}
-
-add_action('manage_posts_custom_column','wpjam_id_manage_posts_custom_column',10,2);
-add_action('manage_pages_custom_column','wpjam_id_manage_posts_custom_column',10,2);
-function wpjam_id_manage_posts_custom_column($column_name,$id){
-    if ($column_name == 'post_id') {
-        echo $id;
-    }
-}
