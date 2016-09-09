@@ -14,13 +14,13 @@
 get_header(); ?>
 
 	<div id="primary-home" class="content-area col-md-12">
-		<main id="main" class="site-main row container" role="main">
+		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ $ink_count = 0; $ink_row_count=0 ?>
 			<?php while ( have_posts() ) : the_post(); 
-				if ($ink_count == 0 ) {echo "<div class='row-".$ink_row_count." row'>";}
+				if ($ink_count == 0 ) {echo "<div  id='primary' class='content-area col-md-8'>";}
 			?>
 			
 
@@ -56,6 +56,6 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
+<?php get_sidebar(); ?>
 <?php get_sidebar('footer'); ?>
 <?php get_footer(); ?>
