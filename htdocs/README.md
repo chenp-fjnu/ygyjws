@@ -43,6 +43,8 @@ l10n.php:
 #Plugin
 
 *http://adambrown.info/p/wp_hooks*
+https://developer.wordpress.org/reference/functions/get_comment/
+https://developer.wordpress.org/reference/functions/get_post/
 * Filter
 ```php
 has_filters
