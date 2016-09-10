@@ -67,6 +67,12 @@ remove_action
 remove_all_actions
 ```
 
+* Notes
+
+Plugin API/Action Reference/init:
+    init is useful for intercepting $_GET or $_POST triggers.
+
+
 * ShortCode
 
 #Theme

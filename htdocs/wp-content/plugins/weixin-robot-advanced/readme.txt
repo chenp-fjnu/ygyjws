@@ -12,7 +12,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-微信机器人是我开发的一款 WordPress 插件，它功能很简单，就是将你的微信公众账号和你的 WordPress 博客联系起来，搜索到和用户发送信息匹配的日志，并自动回复用户，让你使用微信进行营销事半功倍。
+微信机器人是我开发的一款 WordPress 插件，它功能很简单，就是将你的微信公众账号和你的 WordPress 博客联系起来，
+搜索到和用户发送信息匹配的日志，并自动回复用户，让你使用微信进行营销事半功倍。
 
 每次升级之后，请点击数据检测和清理。
 
@@ -30,3 +31,6 @@ QQ 群：106839672
 2. 在后台插件菜单激活该插件
 3. 然后设置
 4. 按照要求获取授权码，开始使用
+
+Notes:
+1. class wechatCallback(weixin-robot-class.php)

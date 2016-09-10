@@ -31,7 +31,7 @@ function post_to_sina_weibo( $post_ID ) {
     // 新浪微博登陆名
     $username = "11191162@qq.com";
     // 新浪微博密码
-    $password = "*******";
+    $password = "********";
     // 微博开放平台的App Key
     $appkey = "1112720411";
     //.'@永隔一江污水'
@@ -52,7 +52,7 @@ function comment_to_sina_weibo($comment_ID) {
 		// 新浪微博登陆名
         $username = "11191162@qq.com";
         // 新浪微博密码
-        $password = "*******";
+        $password = "********";
         // 微博开放平台的App Key
         $appkey = "1112720411";
         
@@ -87,8 +87,6 @@ $title = apply_filters('widget_title', $instance['title']);
 $post_ID = esc_attr($instance['post_ID']);
 ?>
 <?php echo $before_widget; ?>
-<?php if ( $title )
-echo $before_title . $title . $after_title; ?>
 <?php 
 $args = array(
 		  'must_log_in' => ' ',
@@ -98,11 +96,16 @@ $args = array(
           'title_reply_to' => ' ',
           'title_reply_before' => ' ',
           'title_reply_after' => ' ',
-          'label_submit' => '快速发表',
-		  'comment_field' =>  '<div class="form-group">'.
-		    '<textarea id="comment" class="form-control" name="comment" cols="45" rows="2" aria-required="true">' .
-		    '</textarea></div>',		
-		  
+          'label_submit' => '快速发表 至 '.$title,
+          'cancel_reply_before' => '',
+          'cancel_reply_link' => '',
+          'cancel_reply_after' => '',
+		  'comment_field' =>'<textarea id="comment" class="form-control" name="comment" cols="45" rows="2" aria-required="true"></textarea>' ,
+		  'fields'   =>  array(
+		        'author' => '',
+		        'email'  => '',
+		        'url'    => '',
+	        ),
 		);
 comment_form($args,$post_ID);?> 
 <?php echo $after_widget; ?>
