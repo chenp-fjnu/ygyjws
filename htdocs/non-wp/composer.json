@@ -12,5 +12,8 @@
 	],
 	"autoload": {
 		"files": ["NotORM.php"]
+	},
+	"require": {
+		"slim/slim": "^3.0"
 	}
 }
