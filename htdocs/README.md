@@ -81,3 +81,12 @@ Plugin API/Action Reference/init:
 
 #Option
 
+* Apache Web WampServer
+
+#.htaccess
+
+http://www.htaccess-guide.com/
+
+#restful in PHP
+
+http://coreymaynard.com/blog/creating-a-restful-api-with-php/
