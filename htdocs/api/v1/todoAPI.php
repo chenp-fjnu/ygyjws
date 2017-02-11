@@ -45,27 +45,27 @@ class ToDoAPI extends API
      }
       protected function updateItem(){
         // if ($this->method == 'POST') {
-            $array = array(
-                "ID" => $this->request["ID"],
-                "Parent_ID" => $this->request["Parent_ID"],
-                "Subject" => $this->request["Subject"],
-                "Description" => $this->request["Description"],
-                "Category" => $this->request["Category"],
-                "Priority" => $this->request["Priority"],
-                "Owner" => $this->request["Owner"],
-                "StartTime" => $this->request["StartTime"],
-                "DueTime" => $this->request["DueTime"],
-                "Status" => $this->request["Status"],
-                "IsPublic" => $this->request["IsPublic"],
-                "ModTime" => date('Y-m-d H:m:s'),
-            );
-            return $this->db->ToDo()->update($array);
-        // } else {
-        //     return "Only accepts post request for additem";
-        // }
+        $row = $this->getByID();
+        $array = array("ModTime" => date('Y-m-d H:m:s'));
+        $this->pushToArrayIfSet($array,"Parent_ID"); 
+        $this->pushToArrayIfSet($array,"Subject");
+        $this->pushToArrayIfSet($array,"Description");
+        $this->pushToArrayIfSet($array,"Category");
+        $this->pushToArrayIfSet($array,"Priority");
+        $this->pushToArrayIfSet($array,"Owner");
+        $this->pushToArrayIfSet($array,"StartTime");
+        $this->pushToArrayIfSet($array,"DueTime");
+        $this->pushToArrayIfSet($array,"Status");
+        $this->pushToArrayIfSet($array,"IsPublic");
+        return $row->update($array);
+     }
+     function pushToArrayIfSet(&$array, $column){
+        if(isset($this->request[$column])){
+            $array[$column]= $this->request[$column];
+        }  
      }
      protected function deleteItem(){
-        $row = getByID();
+        $row = $this->getByID();
         if(!is_null($row)){
             return $row->delete();
         }
@@ -74,7 +74,7 @@ class ToDoAPI extends API
         }
      }
      protected function getByID(){
-         return $row = $this->db->ToDo[$this->request['ID']];
+         return $this->db->ToDo[$this->request['ID']];
      }
      protected function getAll(){
          return $this->db->ToDo()->order(ToDoAPI::orderby);
