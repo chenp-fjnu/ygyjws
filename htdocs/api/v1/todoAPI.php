@@ -24,28 +24,57 @@ class ToDoAPI extends API
 
      protected function addItem(){
         // if ($this->method == 'POST') {
+        
             $array = array(
-                "Priority" => $this->request["Priority"],
+                "Parent_ID" => $this->request["Parent_ID"],
                 "Subject" => $this->request["Subject"],
-                // "Desc" => $_POST["Desc"],
-                // "StartTime" => $_POST["StartTime"],
-                // "DueTime" => $_POST["DueTime"],
-                "Status" => $this->request["Status"]
-                // "Category" => $_POST["Category"],
-                // "Parent_ID" => $_POST["Parent_ID"],
-                // "Owner" => $_POST["Owner"],
-                // "IsPublic" => 1
+                "Description" => $this->request["Description"],
+                "Category" => $this->request["Category"],
+                "Priority" => $this->request["Priority"],
+                "Owner" => $this->request["Owner"],
+                "StartTime" => $this->request["StartTime"],
+                "DueTime" => $this->request["DueTime"],
+                "Status" => $this->request["Status"],
+                "IsPublic" => $this->request["IsPublic"],
+                "CreateTime" => date('Y-m-d H:m:s'),
             );
-            $this->db->ToDo()->insert($array);
+            return $this->db->ToDo()->insert($array);
+        // } else {
+        //     return "Only accepts post request for additem";
+        // }
+     }
+      protected function updateItem(){
+        // if ($this->method == 'POST') {
+            $array = array(
+                "ID" => $this->request["ID"],
+                "Parent_ID" => $this->request["Parent_ID"],
+                "Subject" => $this->request["Subject"],
+                "Description" => $this->request["Description"],
+                "Category" => $this->request["Category"],
+                "Priority" => $this->request["Priority"],
+                "Owner" => $this->request["Owner"],
+                "StartTime" => $this->request["StartTime"],
+                "DueTime" => $this->request["DueTime"],
+                "Status" => $this->request["Status"],
+                "IsPublic" => $this->request["IsPublic"],
+                "ModTime" => date('Y-m-d H:m:s'),
+            );
+            return $this->db->ToDo()->update($array);
         // } else {
         //     return "Only accepts post request for additem";
         // }
      }
      protected function deleteItem(){
-            echo intval($this->request['ID']);
-            $row = $this->db->ToDo[array('ID' => intval($this->request['ID']))];
-            //delete? primary key?
+        $row = getByID();
+        if(!is_null($row)){
             return $row->delete();
+        }
+        else{
+            return -1;
+        }
+     }
+     protected function getByID(){
+         return $row = $this->db->ToDo[$this->request['ID']];
      }
      protected function getAll(){
          return $this->db->ToDo()->order(ToDoAPI::orderby);
