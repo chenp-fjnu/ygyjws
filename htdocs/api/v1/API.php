@@ -34,12 +34,12 @@ abstract class API
      * Constructor: __construct
      * Allow for CORS, assemble and pre-process the data
      */
-    public function __construct($request) {
+    public function __construct($action) {
         header("Access-Control-Allow-Orgin: *");  //allow requests from any origin to be processed by this page
         header("Access-Control-Allow-Methods: *");//allow for any HTTP method to be accepted
         header("Content-Type: application/json");
 
-        $this->args = explode('/', rtrim($request, '/'));
+        $this->args = explode('/', rtrim($action, '/'));
         $this->endpoint = array_shift($this->args);
         if (array_key_exists(0, $this->args) && !is_numeric($this->args[0])) {
             $this->verb = array_shift($this->args);

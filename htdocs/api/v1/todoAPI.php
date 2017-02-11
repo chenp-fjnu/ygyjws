@@ -1,7 +1,7 @@
 <?php
 require_once 'API.php';
 require_once "NotORM.php";
-class ToDo extends API
+class ToDoAPI extends API
 {
     const dbName = 'bdm247336490_db';
     const dbHost = 'bdm247336490.my3w.com';
@@ -14,21 +14,14 @@ class ToDo extends API
     public $Data;
 
 	public function setup(){
-        $this->connection = new PDO( "mysql:host=".Todo::dbHost.";"."dbname=".Todo::dbName, Todo::dbUsername, Todo::dbUserPassword); 
+        $this->connection = new PDO("mysql:host=".ToDoAPI::dbHost.";"."dbname=".ToDoAPI::dbName, ToDoAPI::dbUsername, ToDoAPI::dbUserPassword); 
         $this->db = new NotORM($this->connection);
     }
-    public function __construct($request) {
-        parent::__construct($request);
+    public function __construct($action) {
+        parent::__construct($action);
         $this->setup();
     }
 
-// <form action="#" method="post">
-//                 <input type="text" name="Priority" placeholder="Priority"></input><br/>
-//                 <input type="text" name="Subject" placeholder="Subject"></input><br/>
-//                 <input type="text" name="Desc" placeholder="Desc"></input><br/>
-//                 <input type="text" name="Status" placeholder="Status"></input><br/>
-//                 <input type="submit" name="submit" value="Submit"></input>
-//             </form>
      protected function addItem(){
         // if ($this->method == 'POST') {
             $array = array(
@@ -55,13 +48,13 @@ class ToDo extends API
             return $row->delete();
      }
      protected function getAll(){
-         return $this->db->ToDo()->order(Todo::orderby);
+         return $this->db->ToDo()->order(ToDoAPI::orderby);
      }
      protected function getByCategory(){
-         return $this->db->ToDo()->where("Category",$this->request['Category'])->order(Todo::orderby);
+         return $this->db->ToDo()->where("Category",$this->request['Category'])->order(ToDoAPI::orderby);
      }
      protected function getByPriority(){
-         return $this->db->ToDo()->where("Priority",$this->request['Priority'])->order(Todo::orderby);
+         return $this->db->ToDo()->where("Priority",$this->request['Priority'])->order(ToDoAPI::orderby);
      }
  }
 // Requests from the same server don't have a HTTP_ORIGIN header
@@ -70,7 +63,7 @@ if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 }
 
 try {
-    $API = new ToDo($_REQUEST['request']);
+    $API = new ToDoAPI($_REQUEST['action']);
     echo $API->processAPI();
 } catch (Exception $e) {
     echo json_encode(Array('error' => $e->getMessage()));

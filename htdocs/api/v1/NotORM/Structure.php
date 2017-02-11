@@ -59,7 +59,7 @@ class NotORM_Structure_Convention implements NotORM_Structure {
 	* @param string %1$s stands for key used after ->, %2$s for table name
 	* @param string prefix for all tables
 	*/
-	function __construct($primary = 'id', $foreign = '%s_id', $table = '%s', $prefix = '') {
+	function __construct($primary = 'ID', $foreign = '%s_id', $table = '%s', $prefix = '') {
 		$this->primary = $primary;
 		$this->foreign = $foreign;
 		$this->table = $table;
