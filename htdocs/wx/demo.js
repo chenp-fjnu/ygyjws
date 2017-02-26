@@ -12,7 +12,6 @@
 wx.ready(function () {
   // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
   document.querySelector('#checkJsApi').onclick = function () {
-      alert('已点击');
     wx.checkJsApi({
       jsApiList: [
         'getNetworkType',

@@ -65,7 +65,7 @@ class JSSDK {
     return $ticket;
   }
 
-  public function getAccessToken() {
+  private function getAccessToken() {
     // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
     $data = json_decode($this->get_php_file("access_token.php"));
     if ($data->expire_time < time()) {
@@ -85,7 +85,7 @@ class JSSDK {
     return $access_token;
   }
 
-  public function httpGet($url) {
+  private function httpGet($url) {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_TIMEOUT, 500);
